@@ -1,9 +1,10 @@
 const express = require('express');
-const { signup,
+const {
     signin,
     signout,
     generateReceipt,
-    getAllReceipts
+    getAllReceipts,
+    deleteReceipt,
 
 } = require('../controllers/zoneController');
 const { protect } = require('../middleware/authMiddleware');
@@ -17,8 +18,9 @@ router.get('/profile', protect, (req, res) => {
 });
 
 ///////////////RECEIPT////////////////////////
-router.post('/generate-receipt', protect, generateReceipt);
 router.get('/all-receipts', protect, getAllReceipts);
+router.post('/generate-receipt', protect, generateReceipt);
+router.delete('/delete-receipt/:id', protect, deleteReceipt);
 
 
 

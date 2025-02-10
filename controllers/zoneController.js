@@ -162,6 +162,19 @@ const getAllReceipts = async (req, res) => {
     }
 };
 
+const deleteReceipt = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const receipt = await Receipt.findByIdAndDelete(id); // Find and delete the product
+        if (!receipt) {
+            return res.status(404).json({ message: 'Receipt not found' });
+        }
+        res.status(200).json({ message: 'Receipt deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
 
 
 
@@ -175,4 +188,5 @@ module.exports = {
     deleteZone,
     generateReceipt,
     getAllReceipts,
+    deleteReceipt,
 };
