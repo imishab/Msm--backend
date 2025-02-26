@@ -16,7 +16,8 @@ const allowedOrigins = [
     'http://localhost:3001',
     'http://localhost:3002',
     'http://192.168.1.5:3002',
-    'https://zonehead.vercel.app'
+    'https://zonehead.vercel.app',
+    'https://msm-admin.vercel.app'
 
 
 ];
