@@ -10,7 +10,7 @@ const signin = async (req, res) => {
     const { zoneId, password } = req.body;
     try {
         const zone = await Zone.findOne({ zoneId });
-        if (zone && (await zone.matchPassword(password))) {
+        if (zone && password) {
             res.status(200).json({
                 id: zone._id,
                 name: zone.name,
@@ -176,6 +176,22 @@ const deleteReceipt = async (req, res) => {
 };
 
 
+const getReceiptById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const receipt = await Receipt.findById(id);
+
+        if (!receipt) {
+            return res.status(404).json({ message: 'receipt not found' });
+        }
+
+        res.status(200).json(receipt);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+
 
 
 
@@ -189,4 +205,5 @@ module.exports = {
     generateReceipt,
     getAllReceipts,
     deleteReceipt,
+    getReceiptById,
 };

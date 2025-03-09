@@ -19,15 +19,15 @@ const zoneSchema = new mongoose.Schema(
 );
 
 // Hash password before saving
-zoneSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-});
+// zoneSchema.pre('save', async function (next) {
+//     if (!this.isModified('password')) return next();
+//     this.password = await bcrypt.hash(this.password, 10);
+//     next();
+// });
 
 // Compare entered password with hashed password
-zoneSchema.methods.matchPassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
-};
+// zoneSchema.methods.matchPassword = async function (enteredPassword) {
+//     return await bcrypt.compare(enteredPassword, this.password);
+// };
 
 module.exports = mongoose.model('Zone', zoneSchema);

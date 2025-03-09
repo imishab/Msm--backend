@@ -5,6 +5,7 @@ const {
     generateReceipt,
     getAllReceipts,
     deleteReceipt,
+    getReceiptById,
 
 } = require('../controllers/zoneController');
 const { protect } = require('../middleware/authMiddleware');
@@ -19,6 +20,7 @@ router.get('/profile', protect, (req, res) => {
 
 ///////////////RECEIPT////////////////////////
 router.get('/all-receipts', protect, getAllReceipts);
+router.get('/receipt/:id', getReceiptById);
 router.post('/generate-receipt', protect, generateReceipt);
 router.delete('/delete-receipt/:id', protect, deleteReceipt);
 
