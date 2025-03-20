@@ -7,6 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 const { generateToken } = require('../utils/token');
+const Receipt = require('../models/Receipt');
 
 // Admin Signup
 const signup = async (req, res) => {
@@ -61,6 +62,22 @@ const getAllUsers = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
+
+const getAllReceipts = async (req, res) => {
+    try {
+        const receipts = await Receipt.find()
+            .populate("zonehead", "name zonename phone") // Populate zonehead with specific fields
+            .exec();
+
+        res.status(200).json(receipts);
+    } catch (err) {
+        console.error("Error fetching receipts:", err);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 
 
 // Admin Add Product
@@ -238,4 +255,5 @@ module.exports = {
     deleteCategory,
     getAllOrders,
     aiImage,
+    getAllReceipts,
 };

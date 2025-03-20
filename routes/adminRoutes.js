@@ -10,6 +10,7 @@ const { signup,
     deleteCategory,
     getAllOrders,
     aiImage,
+    getAllReceipts,
 
 } = require('../controllers/adminController');
 const {
@@ -55,6 +56,9 @@ router.post('/ai-image', protect, aiImage);
 router.post('/add-zone', protect, upload.single('image'), addZone);
 router.get('/all-zones', protect, getAllZones);
 router.delete('/delete-zone/:id', protect, deleteZone);
+
+router.get('/all-receipts', protect, getAllReceipts);
+
 
 
 
