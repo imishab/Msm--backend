@@ -67,9 +67,9 @@ const upload = multer({
 const addZone = async (req, res) => {
     const { name, email, phone, type, zonename, note, zoneId, password } = req.body;
     try {
-        if (await Zone.findOne({ zonename })) {
-            return res.status(400).json({ message: 'This zone is already exists' });
-        }
+        // if (await Zone.findOne({ zonename })) {
+        //     return res.status(400).json({ message: 'This zone is already exists' });
+        // }
 
         const zone = await Zone.create({
             name, email, phone, type, zonename, note, zoneId, password,
